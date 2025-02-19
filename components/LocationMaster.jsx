@@ -12,15 +12,15 @@ function LocationMaster() {
     const [store, setStore] = useState('');
     const [remarks, setRemarks] = useState('');
     const [flag, setFlag] = useState(false);
-    const [locationName, setLocationName] = useState(false);
+    const [locationName, setLocationName] = useState('');
 
-    const [subgroupData,setSubgroupdata] = useState([])
-    const [salesData,setSalesdata] = useState([])
-    const [accountData,setAccountdata] = useState([])
-    const [departmentData,setDepartmentdata] = useState([])
-    const [storeData,setStoredata] = useState([])
-    const [locationData,setLocationdata] = useState([])
-    
+    const [subgroupData, setSubgroupdata] = useState([])
+    const [salesData, setSalesdata] = useState([])
+    const [accountData, setAccountdata] = useState([])
+    const [departmentData, setDepartmentdata] = useState([])
+    const [storeData, setStoredata] = useState([])
+    const [locationData, setLocationdata] = useState([])
+
     const getSubGroupNames = async () => {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/all-item-subgroup`);
         setSubgroupdata(data.data.message);
@@ -37,12 +37,12 @@ function LocationMaster() {
             const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/location-master`, {
                 name: name,
                 prefix: prefix,
-                subgroup:subgroup,
+                subgroup: subgroup,
                 sales: sales,
                 acount: account,
                 department: department,
                 store: store,
-                remarks:remarks
+                remarks: remarks
             });
             toast.success(result.data.message);
             handleReset(); // reset form
@@ -65,13 +65,14 @@ function LocationMaster() {
         setRemarks('');
     };
 
-    const searchHandler = async (e) =>{
+    const searchHandler = async (e) => {
         e.preventDefault();
     }
 
     return (
-        <div className='p-5'>
-            <div className="">
+        <div className=''>
+            <h2 className='text-center text-2xl bg-gray-200 p-2'>LOCATION MASTER</h2>
+            <div className="p-4">
                 <p className=''>Details</p>
                 <hr />
                 <div className="w-full flex item-center justify-center p-4">
@@ -80,14 +81,14 @@ function LocationMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Location name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
 
                         <div className="">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prefix">
                                 Bill prefix
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prefix" type="text" placeholder="Item sub-group name" value={prefix} onChange={e => setPrefix(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prefix" type="text" placeholder="Item sub-group name" value={prefix} onChange={e => setPrefix(e.target.value)} required />
                         </div>
 
                         <div className="">
@@ -95,9 +96,9 @@ function LocationMaster() {
                                 Item sub-group
                             </label>
                             <select onChange={(e) => setSubgroup(e.target.value)} value={subgroup} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(subgroupData) && storeData.length > 0 ? (
+                                    Array.isArray(subgroupData) && subgroupData.length > 0 ? (
                                         storeData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
@@ -113,7 +114,7 @@ function LocationMaster() {
                                 Location sales
                             </label>
                             <select onChange={(e) => setSales(e.target.value)} value={sales} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
                                     Array.isArray(salesData) && salesData.length > 0 ? (
                                         salesData.map((item, i) => (
@@ -131,7 +132,7 @@ function LocationMaster() {
                                 Suspense account
                             </label>
                             <select onChange={(e) => setAccount(e.target.value)} value={account} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
                                     Array.isArray(accountData) && accountData.length > 0 ? (
                                         accountData.map((item, i) => (
@@ -149,7 +150,7 @@ function LocationMaster() {
                                 Department
                             </label>
                             <select onChange={(e) => setDepartment(e.target.value)} value={department} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
                                     Array.isArray(departmentData) && departmentData.length > 0 ? (
                                         departmentData.map((item, i) => (
@@ -167,7 +168,7 @@ function LocationMaster() {
                                 Sub-store
                             </label>
                             <select onChange={(e) => setStore(e.target.value)} value={store} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
                                     Array.isArray(storeData) && storeData.length > 0 ? (
                                         storeData.map((item, i) => (
@@ -184,15 +185,15 @@ function LocationMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
                                 Remarks
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="Item sub-group code" value={remarks} onChange={e => setRemarks(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="Item sub-group code" value={remarks} onChange={e => setRemarks(e.target.value)} required />
                         </div>
 
                         <div className="flex items-center gap-4 justify-end md:col-span-3">
                             <button className="btn btn-error" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
-                            <button className={` ${flag ? 'bg-gray-200 text-black' : 'btn btn-primary'}`} type="submit" disabled={flag}>
-                                {flag?'wait..':'Save'}
+                            <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
+                                {flag ? 'wait..' : 'Save'}
                             </button>
                         </div>
                     </form>
@@ -205,9 +206,9 @@ function LocationMaster() {
                 <hr />
 
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
-                    <p>Unit name: </p>
+                    <p>Location name: </p>
                     <select onChange={(e) => setLocationName(e.target.value)} value={locationName} className="select border border-black select-bordered outline-none" required>
-                    <option value="" disabled selected>select subgroup name</option>
+                        <option value="" disabled selected>select subgroup name</option>
                         {
                             Array.isArray(locationData) && locationData.length > 0 ? (
                                 locationData.map((item, i) => (

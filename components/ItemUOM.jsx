@@ -42,7 +42,7 @@ function ItemUOM() {
         setUom(data.data.data);
     }
 
-    const searchHandler = async (e) =>{
+    const searchHandler = async (e) => {
         e.preventDefault();
     }
 
@@ -51,11 +51,11 @@ function ItemUOM() {
     }, [])
 
     return (
-        <div className='p-5'>
-            <div className="">
+        <div className=''>
+            <h2 className='text-center text-2xl bg-gray-200 p-2'>ITEM UOM</h2>
+            <div className="p-4">
                 <p className=''>Item Details</p>
                 <hr />
-
                 <div className="w-full flex item-center justify-center p-4">
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full md:w-1/2" onSubmit={submitHandler}>
                         <div className="mb-4">
@@ -75,7 +75,7 @@ function ItemUOM() {
                                 Cancel
                             </button>
                             <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
-                                {flag?'wait..':'Update'}
+                                {flag ? 'wait..' : 'Update'}
                             </button>
                         </div>
                     </form>
@@ -83,13 +83,13 @@ function ItemUOM() {
             </div>
 
             {/* ======================================= */}
-            <div className="">
+            <div className="p-4">
                 <p>Search</p>
                 <hr />
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Unit name: </p>
                     <select onChange={(e) => setUnitname(e.target.value)} value={unitname} className="select border border-black select-bordered outline-none" required>
-                    <option value="" disabled selected>select unit name</option>
+                        <option value="" disabled selected>select unit name</option>
                         {
                             Array.isArray(uom) && uom.length > 0 ? (
                                 uom.map((item, i) => (

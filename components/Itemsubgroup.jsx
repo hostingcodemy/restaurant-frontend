@@ -10,7 +10,7 @@ function Itemsubgroup() {
     const [flag, setFlag] = useState(false);
     const [group, setGroup] = useState({});
     const [subgroup, setSubgroup] = useState([]);
-    const [subgroupname,setSubgroupname] = useState('')
+    const [subgroupname, setSubgroupname] = useState('')
 
     const getGroupNames = async () => {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/all-item-group`);
@@ -34,7 +34,7 @@ function Itemsubgroup() {
             const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/item-subgroup`, {
                 name: name,
                 code: code,
-                groupid:groupid,
+                groupid: groupid,
                 accode: accode
             });
             toast.success(result.data.message);
@@ -54,13 +54,14 @@ function Itemsubgroup() {
         setGroupid('');
     };
 
-    const searchHandler = async (e) =>{
+    const searchHandler = async (e) => {
         e.preventDefault();
     }
 
     return (
-        <div className='p-5'>
-            <div className="">
+        <div className=''>
+            <h2 className='text-center text-2xl bg-gray-200 p-2'>ITEM SUB GROUP</h2>
+            <div className="p-4">
                 <p className=''>Item Details</p>
                 <hr />
                 <div className="w-full flex item-center justify-center p-4">
@@ -69,20 +70,20 @@ function Itemsubgroup() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Sub-group name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
                                 Sub-group code
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item sub-group code" value={code} onChange={e => setCode(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item sub-group code" value={code} onChange={e => setCode(e.target.value)} required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
                                 Item group name
                             </label>
                             <select onChange={(e) => setGroupid(e.target.value)} value={groupid} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select group name</option>
                                 {
                                     Array.isArray(group) && group.length > 0 ? (
                                         group.map((item, i) => (
@@ -98,14 +99,14 @@ function Itemsubgroup() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
                                 Account code
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={accode} onChange={e => setAccode(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={accode} onChange={e => setAccode(e.target.value)} required />
                         </div>
                         <div className="flex items-center gap-4 justify-end md:col-span-2">
                             <button className="btn btn-error" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
                             <button className={` ${flag ? 'bg-gray-200 text-black' : 'btn btn-primary'}`} type="submit" disabled={flag}>
-                                {flag?'wait..':'Update'}
+                                {flag ? 'wait..' : 'Update'}
                             </button>
                         </div>
                     </form>
@@ -113,14 +114,13 @@ function Itemsubgroup() {
             </div>
 
             {/* ======================================= */}
-            <div className="">
+            <div className="p-4">
                 <p>Search</p>
                 <hr />
-
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Unit name: </p>
                     <select onChange={(e) => setSubgroupname(e.target.value)} value={subgroupname} className="select border border-black select-bordered outline-none" required>
-                    <option value="" disabled selected>select subgroup name</option>
+                        <option value="" disabled selected>select subgroup name</option>
                         {
                             Array.isArray(subgroup) && subgroup.length > 0 ? (
                                 subgroup.map((item, i) => (
