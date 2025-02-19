@@ -61,7 +61,7 @@ function Itemgroup() {
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
-                                Item group code
+                                Item group code test
                             </label>
                             <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={code} onChange={e => setCode(e.target.value)} required/>
                         </div>
