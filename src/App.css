@@ -1,0 +1,12 @@
+html,*,select,input{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#uomtable tr td,th{
+    padding: 5px;
+    border: 1px solid;
+}
+
+#uomtable tr:nth-child(even){
+    background-color: rgb(221, 218, 218);
+}
