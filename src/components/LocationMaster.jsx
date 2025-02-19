@@ -33,17 +33,19 @@ function LocationMaster() {
     const submitHandler = async (e) => {
         e.preventDefault();
         setFlag(true);
+        let data = {
+            name: name,
+            prefix: prefix,
+            subgroup: subgroup,
+            sales: sales,
+            acount: account,
+            department: department,
+            store: store,
+            remarks: remarks
+        }
+        console.log(data);
         try {
-            const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/location-master`, {
-                name: name,
-                prefix: prefix,
-                subgroup: subgroup,
-                sales: sales,
-                acount: account,
-                department: department,
-                store: store,
-                remarks: remarks
-            });
+            const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/location-master`, data);
             toast.success(result.data.message);
             handleReset(); // reset form
             setFlag(false);
@@ -71,9 +73,9 @@ function LocationMaster() {
 
     return (
         <div className=''>
-            <h2 className='text-center text-2xl bg-gray-200 p-2'>LOCATION MASTER</h2>
+            <h2 className='text-center text-2xl underline underline-offset-4 p-2 heading'>LOCATION MASTER</h2>
             <div className="p-4">
-                <p className=''>Details</p>
+                <p className='text-xs'>Details</p>
                 <hr />
                 <div className="w-full flex item-center justify-center p-4">
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full grid grid-cols-1 md:grid-cols-3 gap-6" onSubmit={submitHandler}>
@@ -189,7 +191,7 @@ function LocationMaster() {
                         </div>
 
                         <div className="flex items-center gap-4 justify-end md:col-span-3">
-                            <button className="btn btn-error" type="button" onClick={handleReset}>
+                            <button className="btn btn-outline" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
                             <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
@@ -201,8 +203,8 @@ function LocationMaster() {
             </div>
 
             {/* ======================================= */}
-            <div className="">
-                <p>Search</p>
+            <div className="p-4">
+                <p className='text-xs'>Search</p>
                 <hr />
 
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
@@ -219,7 +221,7 @@ function LocationMaster() {
                             )
                         }
                     </select>
-                    <button className="btn btn-outline btn-info">Search</button>
+                    <button className="btn btn-neutral">Search</button>
                 </form>
                 <table className="w-full" id='uomtable'>
                     <thead>

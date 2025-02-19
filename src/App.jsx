@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import './App.css'
-import Navigation from '../components/Navigation'
+import Navigation from './components/Navigation'
 
 function App() {
 

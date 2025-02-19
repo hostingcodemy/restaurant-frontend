@@ -5,6 +5,7 @@ import Itemsubgroup from './Itemsubgroup';
 import ItemUOM from './ItemUOM';
 import LocationMaster from './LocationMaster';
 import TaxMaster from './TaxMaster';
+import SupplierPriceList from './SupplierPriceList';
 
 
 function Navigation() {
@@ -20,6 +21,7 @@ function Navigation() {
                         <li onClick={e => setFlag('uom')} className={`${flag === 'uom' ? 'bg-black text-white rounded' : null}`}><a>Item UOM</a></li>
                         <li onClick={e => setFlag('location')} className={`${flag === 'location' ? 'bg-black text-white rounded' : null}`}><a>Location Master</a></li>
                         <li onClick={e => setFlag('tax')} className={`${flag === 'tax' ? 'bg-black text-white rounded' : null}`}><a>Tax Master</a></li>
+                        <li onClick={e => setFlag('supplier')} className={`${flag === 'supplier' ? 'bg-black text-white rounded' : null}`}><a>Supplier Price List</a></li>
                     </ul>
                 </div>
             </div>
@@ -37,6 +39,9 @@ function Navigation() {
             }
             {
                 flag === 'tax' && <TaxMaster />
+            }
+            {
+                flag === 'supplier' && <SupplierPriceList />
             }
 
             <Toaster />

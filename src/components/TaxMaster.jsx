@@ -12,7 +12,7 @@ function TaxMaster() {
     const [inPA, setInpa] = useState('');
     const [fromAmt, setFromamt] = useState('');
     const [toAmt, setToamt] = useState('');
-    const [pTax, setPtax] = useState(false);
+    const [pTax, setPtax] = useState('');
     const [remarks, setRemarks] = useState('');
     const [flag, setFlag] = useState(false);
     const [taxName, setTaxname] = useState(false);
@@ -79,10 +79,10 @@ function TaxMaster() {
 
     return (
         <div className=''>
-            <h2 className='text-center text-2xl bg-gray-200 p-2'>TAX MASTER</h2>
+            <h2 className='text-center text-2xl underline underline-offset-4 p-2 heading'>TAX MASTER</h2>
             <div className="p-4">
-                <p className=''>Details</p>
-                <hr />
+                <p className='text-xs'>Details</p>
+                <hr className='rounded-2xl' />
                 <div className="w-full flex item-center justify-center p-4">
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full grid grid-cols-1 md:grid-cols-3 gap-6" onSubmit={submitHandler}>
                         <div className="">
@@ -193,7 +193,7 @@ function TaxMaster() {
                         </div>
 
                         <div className="flex items-center gap-4 justify-end md:col-span-3">
-                            <button className="btn btn-error" type="button" onClick={handleReset}>
+                            <button className="btn btn-outline" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
                             <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
@@ -206,7 +206,7 @@ function TaxMaster() {
 
             {/* ======================================= */}
             <div className="p-4">
-                <p>Search</p>
+                <p className='text-xs'>Search</p>
                 <hr />
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Location name: </p>
@@ -222,16 +222,19 @@ function TaxMaster() {
                             )
                         }
                     </select>
-                    <button className="btn btn-outline btn-info">Search</button>
+                    <button className="btn btn-neutral">Search</button>
                 </form>
                 <table className="w-full" id='uomtable'>
                     <thead>
                         <tr>
-                            <th className='text-start'>M_ITEMSUBGROUP_ID</th>
-                            <th className='text-start'>DESCR</th>
-                            <th className='text-start'>SHORTCODE</th>
+                            <th className='text-start'>TAX NAME</th>
+                            <th className='text-start'>RATE</th>
+                            <th className='text-start'>TYPE</th>
+                            <th className='text-start'>LEDGER</th>
+                            <th className='text-start'>SHORT NAME</th>
+                            <th className='text-start'>EXEMPTED</th>
+                            <th className='text-start'>IN % OR AMT</th>
                             <th className='text-start'>UPDATE</th>
-                            <th className='text-start'>DELETE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -241,6 +244,11 @@ function TaxMaster() {
                                     <tr key={i}>
                                         <td>{item.M_ITEMSUBGROUP_ID}</td>
                                         <td>{item.DESCR}</td>
+                                        <td>{item.SHORTCODE}</td>
+                                        <td>{item.SHORTCODE}</td>
+                                        <td>{item.SHORTCODE}</td>
+                                        <td>{item.SHORTCODE}</td>
+                                        <td>{item.SHORTCODE}</td>
                                         <td>{item.SHORTCODE}</td>
                                         <td><button className="btn btn-warning w-full">Update</button></td>
                                         <td><button className="btn btn-error w-full">Delete</button></td>
