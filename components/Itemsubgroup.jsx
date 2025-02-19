@@ -64,7 +64,7 @@ function Itemsubgroup() {
                 <p className=''>Item Details</p>
                 <hr />
                 <div className="w-full flex item-center justify-center p-4">
-                    <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full md:w-1/2" onSubmit={submitHandler}>
+                    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full md:w-1/2" onSubmit={submitHandler}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Sub-group name
@@ -100,7 +100,7 @@ function Itemsubgroup() {
                             </label>
                             <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={accode} onChange={e => setAccode(e.target.value)} required/>
                         </div>
-                        <div className="flex items-center gap-4 justify-end">
+                        <div className="flex items-center gap-4 justify-end md:col-span-2">
                             <button className="btn btn-error" type="button" onClick={handleReset}>
                                 Cancel
                             </button>

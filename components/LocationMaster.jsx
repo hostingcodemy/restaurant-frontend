@@ -12,12 +12,14 @@ function LocationMaster() {
     const [store, setStore] = useState('');
     const [remarks, setRemarks] = useState('');
     const [flag, setFlag] = useState(false);
+    const [locationName, setLocationName] = useState(false);
 
     const [subgroupData,setSubgroupdata] = useState([])
     const [salesData,setSalesdata] = useState([])
     const [accountData,setAccountdata] = useState([])
     const [departmentData,setDepartmentdata] = useState([])
     const [storeData,setStoredata] = useState([])
+    const [locationData,setLocationdata] = useState([])
     
     const getSubGroupNames = async () => {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/all-item-subgroup`);
@@ -95,8 +97,8 @@ function LocationMaster() {
                             <select onChange={(e) => setSubgroup(e.target.value)} value={subgroup} className="select w-full border border-black select-bordered outline-none" required>
                             <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(subgroupData) && storeData.length > 0 ? (
+                                        storeData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
@@ -113,8 +115,8 @@ function LocationMaster() {
                             <select onChange={(e) => setSales(e.target.value)} value={sales} className="select w-full border border-black select-bordered outline-none" required>
                             <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(salesData) && salesData.length > 0 ? (
+                                        salesData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
@@ -131,8 +133,8 @@ function LocationMaster() {
                             <select onChange={(e) => setAccount(e.target.value)} value={account} className="select w-full border border-black select-bordered outline-none" required>
                             <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(accountData) && accountData.length > 0 ? (
+                                        accountData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
@@ -149,8 +151,8 @@ function LocationMaster() {
                             <select onChange={(e) => setDepartment(e.target.value)} value={department} className="select w-full border border-black select-bordered outline-none" required>
                             <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(departmentData) && departmentData.length > 0 ? (
+                                        departmentData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
@@ -167,8 +169,8 @@ function LocationMaster() {
                             <select onChange={(e) => setStore(e.target.value)} value={store} className="select w-full border border-black select-bordered outline-none" required>
                             <option value="" disabled selected>select group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(storeData) && storeData.length > 0 ? (
+                                        storeData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
@@ -204,11 +206,11 @@ function LocationMaster() {
 
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Unit name: </p>
-                    <select onChange={(e) => setSubgroupname(e.target.value)} value={subgroupname} className="select border border-black select-bordered outline-none" required>
+                    <select onChange={(e) => setLocationName(e.target.value)} value={locationName} className="select border border-black select-bordered outline-none" required>
                     <option value="" disabled selected>select subgroup name</option>
                         {
-                            Array.isArray(subgroup) && subgroup.length > 0 ? (
-                                subgroup.map((item, i) => (
+                            Array.isArray(locationData) && locationData.length > 0 ? (
+                                locationData.map((item, i) => (
                                     <option value={item.CODE} key={i}>{item.CODE}</option>
                                 ))
                             ) : (
@@ -230,7 +232,7 @@ function LocationMaster() {
                     </thead>
                     <tbody>
                         {
-                            subgroup.map((item, i) => {
+                            locationData.map((item, i) => {
                                 return (
                                     <tr key={i}>
                                         <td>{item.M_ITEMSUBGROUP_ID}</td>
