@@ -55,7 +55,7 @@ function Itemgroup() {
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full md:w-1/2" onSubmit={submitHandler}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                Item group name
+                                Item group
                             </label>
                             <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item group name" value={name} onChange={e => setName(e.target.value)} required/>
                         </div>
