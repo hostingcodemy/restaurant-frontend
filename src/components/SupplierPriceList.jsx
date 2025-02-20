@@ -75,14 +75,14 @@ function SupplierPriceList() {
                                 Supplier name
                             </label>
                             <select onChange={(e) => setSname(e.target.value)} value={sname} className="select w-full border border-black select-bordered outline-none" required>
-                                <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select supplier name</option>
                                 {
                                     Array.isArray(supplierData) && supplierData.length > 0 ? (
                                         supplierData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No supplier name available</option>
                                     )
                                 }
                             </select>
@@ -93,14 +93,14 @@ function SupplierPriceList() {
                                 Item name
                             </label>
                             <select onChange={(e) => setIname(e.target.value)} value={iname} className="select w-full border border-black select-bordered outline-none" required>
-                                <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select item name</option>
                                 {
                                     Array.isArray(itemData) && itemData.length > 0 ? (
                                         itemData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No item name available</option>
                                     )
                                 }
                             </select>
@@ -117,7 +117,7 @@ function SupplierPriceList() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
                                 Price
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" placeholder="Item group code" value={price} onChange={e => setPrice(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" placeholder="Price" value={price} onChange={e => setPrice(e.target.value)} required />
                         </div>
                         <div className="flex items-center gap-4 justify-end md:col-span-2">
                             <button className="btn btn-outline" type="button" onClick={handleReset}>
@@ -141,14 +141,14 @@ function SupplierPriceList() {
                             Supplier name
                         </label>
                         <select onChange={(e) => setSname(e.target.value)} value={sname} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                            <option value="" disabled selected>select supplier name</option>
                             {
                                 Array.isArray(supplierData) && supplierData.length > 0 ? (
                                     supplierData.map((item, i) => (
                                         <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                     ))
                                 ) : (
-                                    <option>No groups available</option>
+                                    <option>No supplier name available</option>
                                 )
                             }
                         </select>
@@ -159,14 +159,14 @@ function SupplierPriceList() {
                             Item name
                         </label>
                         <select onChange={(e) => setIname(e.target.value)} value={iname} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                            <option value="" disabled selected>select item name</option>
                             {
                                 Array.isArray(itemData) && itemData.length > 0 ? (
                                     itemData.map((item, i) => (
                                         <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                     ))
                                 ) : (
-                                    <option>No groups available</option>
+                                    <option>No item name available</option>
                                 )
                             }
                         </select>

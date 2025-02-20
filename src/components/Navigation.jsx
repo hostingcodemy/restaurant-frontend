@@ -6,6 +6,11 @@ import ItemUOM from './ItemUOM';
 import LocationMaster from './LocationMaster';
 import TaxMaster from './TaxMaster';
 import SupplierPriceList from './SupplierPriceList';
+import ItemOpening from './ItemOpening';
+import ItemSearch from './ItemSearch';
+import MinimumStock from './MinimumStock';
+import SubstoreOpening from './SubstoreOpening.jsx';
+import PurchaseTax from './PurchaseTax.jsx';
 
 
 function Navigation() {
@@ -22,6 +27,10 @@ function Navigation() {
                         <li onClick={e => setFlag('location')} className={`${flag === 'location' ? 'bg-black text-white rounded' : null}`}><a>Location Master</a></li>
                         <li onClick={e => setFlag('tax')} className={`${flag === 'tax' ? 'bg-black text-white rounded' : null}`}><a>Tax Master</a></li>
                         <li onClick={e => setFlag('supplier')} className={`${flag === 'supplier' ? 'bg-black text-white rounded' : null}`}><a>Supplier Price List</a></li>
+                        <li onClick={e => setFlag('opening')} className={`${flag === 'opening' ? 'bg-black text-white rounded' : null}`}><a>item Opening</a></li>
+                        <li onClick={e => setFlag('search')} className={`${flag === 'search' ? 'bg-black text-white rounded' : null}`}><a>item Search</a></li>
+                        <li onClick={e => setFlag('stock')} className={`${flag === 'stock' ? 'bg-black text-white rounded' : null}`}><a>Minimum stock item</a></li>
+                        <li onClick={e => setFlag('ptax')} className={`${flag === 'ptax' ? 'bg-black text-white rounded' : null}`}><a>Setup purchase tax</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +52,21 @@ function Navigation() {
             {
                 flag === 'supplier' && <SupplierPriceList />
             }
-
+            {
+                flag === 'opening' && <ItemOpening />
+            }
+            {
+                flag === 'search' && <ItemSearch />
+            }
+            {
+                flag === 'stock' && <MinimumStock />
+            }
+            {
+                flag === 'sopening' && <SubstoreOpening />
+            }
+            {
+                flag === 'ptax' && <PurchaseTax />
+            }
             <Toaster />
         </>
     )

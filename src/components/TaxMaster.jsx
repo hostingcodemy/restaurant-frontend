@@ -15,7 +15,7 @@ function TaxMaster() {
     const [pTax, setPtax] = useState('');
     const [remarks, setRemarks] = useState('');
     const [flag, setFlag] = useState(false);
-    const [taxName, setTaxname] = useState(false);
+    const [taxName, setTaxname] = useState('');
 
     const [ledgerData, setLedgerData] = useState([])
     const [pTaxData, setPtaxData] = useState([])
@@ -89,7 +89,7 @@ function TaxMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Tax name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Tax name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
 
                         <div className="">
@@ -97,14 +97,14 @@ function TaxMaster() {
                                 Ledger
                             </label>
                             <select onChange={(e) => setLedger(e.target.value)} value={ledger} className="select w-full border border-black select-bordered outline-none" required>
-                                <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select ledger</option>
                                 {
                                     Array.isArray(ledgerData) && ledgerData.length > 0 ? (
                                         ledgerData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No ledger available</option>
                                     )
                                 }
                             </select>
@@ -121,14 +121,14 @@ function TaxMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="type">
                                 Type
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="type" type="text" placeholder="Item sub-group name" value={type} onChange={e => setType(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="type" type="text" placeholder="Type" value={type} onChange={e => setType(e.target.value)} required />
                         </div>
 
                         <div className="">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="scode">
                                 S-code
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="scode" type="text" placeholder="Item sub-group name" value={scode} onChange={e => setScode(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="scode" type="text" placeholder="S-code" value={scode} onChange={e => setScode(e.target.value)} required />
                         </div>
 
                         <div className="">
@@ -157,14 +157,14 @@ function TaxMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fromamt">
                                 From amount
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromamt" type="number" placeholder="Item sub-group name" value={fromAmt} onChange={e => setFromamt(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromamt" type="number" placeholder="From amount" value={fromAmt} onChange={e => setFromamt(e.target.value)} required />
                         </div>
 
                         <div className="">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="toamt">
                                 To amount
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="toamt" type="number" placeholder="Item sub-group name" value={toAmt} onChange={e => setToamt(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="toamt" type="number" placeholder="To amount" value={toAmt} onChange={e => setToamt(e.target.value)} required />
                         </div>
 
                         <div className="">
@@ -172,14 +172,14 @@ function TaxMaster() {
                                 Parent tax
                             </label>
                             <select onChange={(e) => setPtax(e.target.value)} value={pTax} className="select w-full border border-black select-bordered outline-none" required>
-                                <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select parent tax</option>
                                 {
                                     Array.isArray(pTaxData) && pTaxData.length > 0 ? (
                                         pTaxData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No parent tax available</option>
                                     )
                                 }
                             </select>
@@ -189,7 +189,7 @@ function TaxMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
                                 Remarks
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="Item sub-group code" value={remarks} onChange={e => setRemarks(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="Remarks" value={remarks} onChange={e => setRemarks(e.target.value)} required />
                         </div>
 
                         <div className="flex items-center gap-4 justify-end md:col-span-3">
@@ -209,7 +209,7 @@ function TaxMaster() {
                 <p className='text-xs'>Search</p>
                 <hr />
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
-                    <p>Location name: </p>
+                    <p>Tax name: </p>
                     <select onChange={(e) => setTaxname(e.target.value)} value={taxName} className="select border border-black select-bordered outline-none" required>
                         <option value="" disabled selected>select tax name</option>
                         {
@@ -218,7 +218,7 @@ function TaxMaster() {
                                     <option value={item.CODE} key={i}>{item.CODE}</option>
                                 ))
                             ) : (
-                                <option>No unit available</option>
+                                <option>No tax name available</option>
                             )
                         }
                     </select>
@@ -235,6 +235,7 @@ function TaxMaster() {
                             <th className='text-start'>EXEMPTED</th>
                             <th className='text-start'>IN % OR AMT</th>
                             <th className='text-start'>UPDATE</th>
+                            <th className='text-start'>DELETE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -253,7 +254,6 @@ function TaxMaster() {
                                         <td><button className="btn btn-warning w-full">Update</button></td>
                                         <td><button className="btn btn-error w-full">Delete</button></td>
                                     </tr>
-
                                 )
                             })
                         }

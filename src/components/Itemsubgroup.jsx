@@ -120,14 +120,14 @@ function Itemsubgroup() {
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Unit name: </p>
                     <select onChange={(e) => setSubgroupname(e.target.value)} value={subgroupname} className="select border border-black select-bordered outline-none" required>
-                        <option value="" disabled selected>select subgroup name</option>
+                        <option value="" disabled selected>select sub-group name</option>
                         {
                             Array.isArray(subgroup) && subgroup.length > 0 ? (
                                 subgroup.map((item, i) => (
                                     <option value={item.CODE} key={i}>{item.CODE}</option>
                                 ))
                             ) : (
-                                <option>No unit available</option>
+                                <option>No sub-group available</option>
                             )
                         }
                     </select>

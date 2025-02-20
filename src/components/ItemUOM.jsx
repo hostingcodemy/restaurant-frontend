@@ -62,13 +62,13 @@ function ItemUOM() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Unit name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item group name" value={name} onChange={e => setName(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Unit name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
                                 Unit short code
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={code} onChange={e => setCode(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Unit short code" value={code} onChange={e => setCode(e.target.value)} required />
                         </div>
                         <div className="flex items-center gap-4 justify-end">
                             <button className="btn btn-outline" type="button" onClick={handleReset}>
