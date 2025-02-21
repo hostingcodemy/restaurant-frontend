@@ -12,13 +12,15 @@ function LocationMaster() {
     const [store, setStore] = useState('');
     const [remarks, setRemarks] = useState('');
     const [flag, setFlag] = useState(false);
+    const [locationName, setLocationName] = useState('');
 
-    const [subgroupData,setSubgroupdata] = useState([])
-    const [salesData,setSalesdata] = useState([])
-    const [accountData,setAccountdata] = useState([])
-    const [departmentData,setDepartmentdata] = useState([])
-    const [storeData,setStoredata] = useState([])
-    
+    const [subgroupData, setSubgroupdata] = useState([])
+    const [salesData, setSalesdata] = useState([])
+    const [accountData, setAccountdata] = useState([])
+    const [departmentData, setDepartmentdata] = useState([])
+    const [storeData, setStoredata] = useState([])
+    const [locationData, setLocationdata] = useState([])
+
     const getSubGroupNames = async () => {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/all-item-subgroup`);
         setSubgroupdata(data.data.message);
@@ -31,17 +33,19 @@ function LocationMaster() {
     const submitHandler = async (e) => {
         e.preventDefault();
         setFlag(true);
+        let data = {
+            name: name,
+            prefix: prefix,
+            subgroup: subgroup,
+            sales: sales,
+            acount: account,
+            department: department,
+            store: store,
+            remarks: remarks
+        }
+        console.log(data);
         try {
-            const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/location-master`, {
-                name: name,
-                prefix: prefix,
-                subgroup:subgroup,
-                sales: sales,
-                acount: account,
-                department: department,
-                store: store,
-                remarks:remarks
-            });
+            const result = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/location-master`, data);
             toast.success(result.data.message);
             handleReset(); // reset form
             setFlag(false);
@@ -63,14 +67,15 @@ function LocationMaster() {
         setRemarks('');
     };
 
-    const searchHandler = async (e) =>{
+    const searchHandler = async (e) => {
         e.preventDefault();
     }
 
     return (
-        <div className='p-5'>
-            <div className="">
-                <p className=''>Details</p>
+        <div className=''>
+            <h2 className='text-center text-2xl underline underline-offset-4 p-2 heading'>LOCATION MASTER</h2>
+            <div className="p-4">
+                <p className='text-xs'>Details</p>
                 <hr />
                 <div className="w-full flex item-center justify-center p-4">
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full grid grid-cols-1 md:grid-cols-3 gap-6" onSubmit={submitHandler}>
@@ -78,14 +83,14 @@ function LocationMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Location name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item sub-group name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
 
                         <div className="">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prefix">
                                 Bill prefix
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prefix" type="text" placeholder="Item sub-group name" value={prefix} onChange={e => setPrefix(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prefix" type="text" placeholder="Item sub-group name" value={prefix} onChange={e => setPrefix(e.target.value)} required />
                         </div>
 
                         <div className="">
@@ -93,14 +98,14 @@ function LocationMaster() {
                                 Item sub-group
                             </label>
                             <select onChange={(e) => setSubgroup(e.target.value)} value={subgroup} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select sub-group name</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(subgroupData) && subgroupData.length > 0 ? (
+                                        storeData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No sub-groups available</option>
                                     )
                                 }
                             </select>
@@ -111,14 +116,14 @@ function LocationMaster() {
                                 Location sales
                             </label>
                             <select onChange={(e) => setSales(e.target.value)} value={sales} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select location sales</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(salesData) && salesData.length > 0 ? (
+                                        salesData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No location sales available</option>
                                     )
                                 }
                             </select>
@@ -129,14 +134,14 @@ function LocationMaster() {
                                 Suspense account
                             </label>
                             <select onChange={(e) => setAccount(e.target.value)} value={account} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select suspense account</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(accountData) && accountData.length > 0 ? (
+                                        accountData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No suspense account available</option>
                                     )
                                 }
                             </select>
@@ -147,14 +152,14 @@ function LocationMaster() {
                                 Department
                             </label>
                             <select onChange={(e) => setDepartment(e.target.value)} value={department} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select department</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(departmentData) && departmentData.length > 0 ? (
+                                        departmentData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No department available</option>
                                     )
                                 }
                             </select>
@@ -165,14 +170,14 @@ function LocationMaster() {
                                 Sub-store
                             </label>
                             <select onChange={(e) => setStore(e.target.value)} value={store} className="select w-full border border-black select-bordered outline-none" required>
-                            <option value="" disabled selected>select group name</option>
+                                <option value="" disabled selected>select Sub-store</option>
                                 {
-                                    Array.isArray(group) && group.length > 0 ? (
-                                        group.map((item, i) => (
+                                    Array.isArray(storeData) && storeData.length > 0 ? (
+                                        storeData.map((item, i) => (
                                             <option value={item.M_ITEMGROUPID} key={i}>{item.GROUPNAME}</option>
                                         ))
                                     ) : (
-                                        <option>No groups available</option>
+                                        <option>No Sub-store available</option>
                                     )
                                 }
                             </select>
@@ -182,15 +187,15 @@ function LocationMaster() {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
                                 Remarks
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="Item sub-group code" value={remarks} onChange={e => setRemarks(e.target.value)} required/>
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="remarks" type="text" placeholder="remarks" value={remarks} onChange={e => setRemarks(e.target.value)} required />
                         </div>
 
                         <div className="flex items-center gap-4 justify-end md:col-span-3">
-                            <button className="btn btn-error" type="button" onClick={handleReset}>
+                            <button className="btn btn-outline" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
-                            <button className={` ${flag ? 'bg-gray-200 text-black' : 'btn btn-primary'}`} type="submit" disabled={flag}>
-                                {flag?'wait..':'Save'}
+                            <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
+                                {flag ? 'wait..' : 'Save'}
                             </button>
                         </div>
                     </form>
@@ -198,25 +203,25 @@ function LocationMaster() {
             </div>
 
             {/* ======================================= */}
-            <div className="">
-                <p>Search</p>
+            <div className="p-4">
+                <p className='text-xs'>Search</p>
                 <hr />
 
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
-                    <p>Unit name: </p>
-                    <select onChange={(e) => setSubgroupname(e.target.value)} value={subgroupname} className="select border border-black select-bordered outline-none" required>
-                    <option value="" disabled selected>select subgroup name</option>
+                    <p>Location name: </p>
+                    <select onChange={(e) => setLocationName(e.target.value)} value={locationName} className="select border border-black select-bordered outline-none" required>
+                        <option value="" disabled selected>select location name</option>
                         {
-                            Array.isArray(subgroup) && subgroup.length > 0 ? (
-                                subgroup.map((item, i) => (
+                            Array.isArray(locationData) && locationData.length > 0 ? (
+                                locationData.map((item, i) => (
                                     <option value={item.CODE} key={i}>{item.CODE}</option>
                                 ))
                             ) : (
-                                <option>No unit available</option>
+                                <option>No location available</option>
                             )
                         }
                     </select>
-                    <button className="btn btn-outline btn-info">Search</button>
+                    <button className="btn btn-neutral">Search</button>
                 </form>
                 <table className="w-full" id='uomtable'>
                     <thead>
@@ -230,7 +235,7 @@ function LocationMaster() {
                     </thead>
                     <tbody>
                         {
-                            subgroup.map((item, i) => {
+                            locationData.map((item, i) => {
                                 return (
                                     <tr key={i}>
                                         <td>{item.M_ITEMSUBGROUP_ID}</td>

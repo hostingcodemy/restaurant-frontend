@@ -42,7 +42,7 @@ function ItemUOM() {
         setUom(data.data.data);
     }
 
-    const searchHandler = async (e) =>{
+    const searchHandler = async (e) => {
         e.preventDefault();
     }
 
@@ -51,31 +51,31 @@ function ItemUOM() {
     }, [])
 
     return (
-        <div className='p-5'>
-            <div className="">
-                <p className=''>Item Details</p>
+        <div className=''>
+            <h2 className='text-center text-2xl underline underline-offset-4 p-2 heading'>ITEM UOM</h2>
+            <div className="p-4">
+                <p className='text-xs'>Item Details</p>
                 <hr />
-
                 <div className="w-full flex item-center justify-center p-4">
                     <form className="bg-gray-100 border border-black shadow-gray-400 shadow-md rounded-xl px-8 pt-6 pb-8 w-full md:w-1/2" onSubmit={submitHandler}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Unit name
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Item group name" value={name} onChange={e => setName(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Unit name" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="code">
                                 Unit short code
                             </label>
-                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Item group code" value={code} onChange={e => setCode(e.target.value)} required />
+                            <input className="bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code" type="text" placeholder="Unit short code" value={code} onChange={e => setCode(e.target.value)} required />
                         </div>
                         <div className="flex items-center gap-4 justify-end">
-                            <button className="btn btn-error" type="button" onClick={handleReset}>
+                            <button className="btn btn-outline" type="button" onClick={handleReset}>
                                 Cancel
                             </button>
                             <button className={` ${flag ? 'btn btn-active' : 'btn btn-primary'}`} type="submit" disabled={flag}>
-                                {flag?'wait..':'Update'}
+                                {flag ? 'wait..' : 'Update'}
                             </button>
                         </div>
                     </form>
@@ -83,13 +83,13 @@ function ItemUOM() {
             </div>
 
             {/* ======================================= */}
-            <div className="">
-                <p>Search</p>
+            <div className="p-4">
+                <p className='text-xs'>Search</p>
                 <hr />
                 <form onSubmit={searchHandler} className='mt-4 mb-4 flex gap-4 items-center'>
                     <p>Unit name: </p>
                     <select onChange={(e) => setUnitname(e.target.value)} value={unitname} className="select border border-black select-bordered outline-none" required>
-                    <option value="" disabled selected>select unit name</option>
+                        <option value="" disabled selected>select unit name</option>
                         {
                             Array.isArray(uom) && uom.length > 0 ? (
                                 uom.map((item, i) => (
@@ -100,7 +100,7 @@ function ItemUOM() {
                             )
                         }
                     </select>
-                    <button className="btn btn-outline btn-info">Search</button>
+                    <button className="btn btn-neutral">Search</button>
                 </form>
                 <table className="w-full" id='uomtable'>
                     <thead>
